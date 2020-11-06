@@ -1,14 +1,40 @@
 <template>
-  <v-container fluid fill-height class="loginOverlay">
-    <v-layout flex align-center justify-center>
-      <v-flex xs12 sm8 elevation-6 class="p-5">
+  <v-container fluid fill-height>
+    <v-layout
+      flex
+      align-center
+      justify-center
+      class="py-sm-2 py-md-5 px-sm-5 px-md-10"
+    >
+      <v-flex xs12 sm8 elevation-6>
         <v-card>
-          <v-card-title class="">
-            Login to your account
+          <v-card-title>
+            Create your unblockBallot account
           </v-card-title>
-          <v-card-text class="p-4">
+          <v-card-text class="px-4">
             <div>
               <v-form v-model="valid" ref="form">
+                <v-row>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="firstname"
+                      :rules="nameRules"
+                      :counter="15"
+                      label="First name"
+                      required
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="lastname"
+                      :rules="nameRules"
+                      :counter="15"
+                      label="Last name"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
                 <v-text-field
                   label="Enter your e-mail address"
                   v-model="email"
@@ -26,15 +52,18 @@
                   counter
                   required
                 ></v-text-field>
-                <v-layout justify-space-between class="p-5">
+                <v-layout justify-space-between class="py-5">
                   <v-btn
                     @click="submit"
                     :class="{
                       'blue darken-4 white--text': valid,
                       disabled: !valid
                     }"
-                    >Login</v-btn
-                  ><a href="/dashboard" class="overline">Forgot Password</a>
+                    >Sign Up</v-btn
+                  >
+                  <v-btn to="/signin" outlined color="blue">
+                    Login
+                  </v-btn>
                 </v-layout>
               </v-form>
             </div>
@@ -52,7 +81,13 @@ export default {
       valid: false,
       visible: false,
       password: "",
+      firstname: "",
+      lastname: "",
       passwordRules: [v => !!v || "Password is required"],
+      nameRules: [
+        v => !!v || "Name is required",
+        v => v.length <= 15 || "Name must be less than 10 characters"
+      ],
       email: "",
       emailRules: [
         v => !!v || "E-mail is required",
@@ -65,12 +100,9 @@ export default {
   methods: {
     submit() {
       if (this.$refs.form.validate()) {
-        this.$refs.form.$el.submit();
-        // request to API here
+        // this.$refs.form.$el.submit();
+        // request to signup API here
       }
-    },
-    clear() {
-      this.$refs.form.reset();
     }
   }
 };
