@@ -1,7 +1,7 @@
 <template>
   <v-card
     hover
-    :width="$vuetify.breakpoint.lgAndUp ? 700 : 400"
+    :width="$vuetify.breakpoint.lgAndUp ? 640 : 400"
     class="mx-auto my-2"
     max-width="700"
   >

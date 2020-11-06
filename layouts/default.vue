@@ -78,7 +78,7 @@ export default {
       ],
       miniVariant: false,
       right: true,
-      title: "unBlocked Dashboard",
+      title: "unBlock Ballot",
     };
   },
   methods: {
