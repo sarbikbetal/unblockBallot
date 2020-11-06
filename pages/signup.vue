@@ -94,14 +94,41 @@ export default {
         v =>
           /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
           "E-mail must be valid"
-      ]
+      ],
+      signuperror:
+        "Some error occurred while signing up. Please refresh the page!"
     };
   },
   methods: {
-    submit() {
+    async submit() {
       if (this.$refs.form.validate()) {
-        // this.$refs.form.$el.submit();
         // request to signup API here
+        // email, firstname, lastname, password
+        const data = JSON.stringify({
+          email: this.email,
+          firstname: this.firstname,
+          lastname: this.lastname,
+          password: this.password
+        });
+        const headers = {
+          "Content-Type": "application/json"
+        };
+        let resp;
+        const url = "http://127.0.0.1:3001/user/register";
+        this.$axios
+          .$post(url, data, {
+            headers: headers
+          })
+          .then(response => {
+            console.log(response);
+            if (response === "OK") {
+              this.$router.push("signin");
+            } else {
+            }
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
       }
     }
   }
