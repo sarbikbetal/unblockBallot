@@ -38,6 +38,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
+    "@nuxtjs/auth",
     "@nuxtjs/axios"
   ],
 
@@ -59,7 +60,30 @@ export default {
       }
     }
   },
-
+  axios: {
+    // baseURL: process.env.BASE_URL',
+    baseURL: "http://localhost:3001/",
+    credentials: true
+  },
+  auth: {
+    redirect: {
+      home: "/dashboard"
+    },
+    autoFetchUser: true,
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: "/user/login",
+            method: "post",
+            propertyName: "data.token"
+          },
+          logout: false,
+          user: false
+        }
+      }
+    }
+  },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {}
 };

@@ -71,35 +71,24 @@ export default {
     };
   },
   methods: {
-    submit() {
+    async submit() {
       if (this.$refs.form.validate()) {
         // this.$refs.form.$el.submit();
         // request to API here
         // & redirect to dashboard
         // this.$router.push("/dashboard");
-        const data = JSON.stringify({
-          email: this.email,
-          password: this.password
-        });
-        const headers = {
-          "Content-Type": "application/json"
-        };
-        let resp;
-        const url = "http://127.0.0.1:3001/user/login";
-        this.$axios
-          .$post(url, data, {
-            headers: headers
-          })
-          .then(response => {
-            console.log(response);
-            // if (response === "OK") {
-            //   this.$router.push("dashboard");
-            // } else {
-            // }
-          })
-          .catch(function(error) {
-            console.log(error);
+        try {
+          await this.$auth.loginWith("local", {
+            data: {
+              email: this.email,
+              password: this.password
+            }
           });
+          this.$router.push("/dashboard");
+        } catch (e) {
+          // this.error = e.response.data.message;
+          console.log(e);
+        }
       }
     }
   }

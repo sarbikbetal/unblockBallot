@@ -114,7 +114,7 @@ export default {
           "Content-Type": "application/json"
         };
         let resp;
-        const url = "http://127.0.0.1:3001/user/register";
+        const url = "http://localhost:3001/user/register";
         this.$axios
           .$post(url, data, {
             headers: headers
@@ -124,6 +124,7 @@ export default {
             if (response === "OK") {
               this.$router.push("signin");
             } else {
+              // handle error
             }
           })
           .catch(function(error) {
