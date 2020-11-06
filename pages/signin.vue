@@ -8,9 +8,7 @@
     >
       <v-flex xs12 sm8 elevation-6>
         <v-card>
-          <v-card-title>
-            Login to your account
-          </v-card-title>
+          <v-card-title> Login to your account </v-card-title>
           <v-card-text>
             <div>
               <v-form v-model="valid" ref="form">
@@ -36,13 +34,11 @@
                     @click="submit"
                     :class="{
                       'blue darken-4 white--text': valid,
-                      disabled: !valid
+                      disabled: !valid,
                     }"
                     >Login</v-btn
                   >
-                  <v-btn to="/signup" outlined color="blue">
-                    Sign Up
-                  </v-btn>
+                  <v-btn to="/signup" outlined color="blue"> Sign Up </v-btn>
                 </v-layout>
               </v-form>
             </div>
@@ -55,19 +51,25 @@
 
 <script>
 export default {
+  middleware({ store, redirect }) {
+    // If the user is authenticated
+    if (store.getters.isAuthenticated) {
+      return redirect("/dashboard");
+    }
+  },
   data() {
     return {
       valid: false,
       visible: false,
       password: "",
-      passwordRules: [v => !!v || "Password is required"],
+      passwordRules: [(v) => !!v || "Password is required"],
       email: "",
       emailRules: [
-        v => !!v || "E-mail is required",
-        v =>
+        (v) => !!v || "E-mail is required",
+        (v) =>
           /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-          "E-mail must be valid"
-      ]
+          "E-mail must be valid",
+      ],
     };
   },
   methods: {
@@ -81,8 +83,8 @@ export default {
           await this.$auth.loginWith("local", {
             data: {
               email: this.email,
-              password: this.password
-            }
+              password: this.password,
+            },
           });
           this.$router.push("/dashboard");
         } catch (e) {
@@ -90,8 +92,8 @@ export default {
           console.log(e);
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

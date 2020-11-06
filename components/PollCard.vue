@@ -4,7 +4,7 @@
     :width="$vuetify.breakpoint.lgAndUp ? 640 : 400"
     class="mx-auto my-2"
     max-width="700"
-    ripple="true"
+    ripple
     :to="'polls/' + poll.id"
   >
     <v-card-title class="headline" v-text="idx + ' ' + poll.id"></v-card-title>
