@@ -34,12 +34,12 @@
       <v-btn icon @click.stop="toggleTheme()">
         <v-icon>mdi-theme-light-dark</v-icon>
       </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
+      <!-- <v-btn icon @click.stop="clipped = !clipped">
         <v-icon>mdi-application</v-icon>
       </v-btn>
       <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>mdi-minus</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-app-bar>
     <v-main>
       <v-container>
@@ -63,28 +63,33 @@ export default {
         {
           icon: "mdi-apps",
           title: "Welcome",
-          to: "/",
-        },
-        {
-          icon: "mdi-chart-bubble",
-          title: "Inspire",
-          to: "/inspire",
+          to: "/"
         },
         {
           icon: "mdi-spa",
           title: "Dashboard",
-          to: "/dashboard",
+          to: "/dashboard"
         },
+        {
+          icon: "mdi-account",
+          title: "Sign Up",
+          to: "/signup"
+        },
+        {
+          icon: "mdi-account-circle",
+          title: "Sign In",
+          to: "/signin"
+        }
       ],
       miniVariant: false,
       right: true,
-      title: "unBlock Ballot",
+      title: "unBlocked Dashboard"
     };
   },
   methods: {
     toggleTheme() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-    },
-  },
+    }
+  }
 };
 </script>
