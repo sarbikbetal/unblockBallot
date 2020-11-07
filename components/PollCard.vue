@@ -4,8 +4,8 @@
     :width="$vuetify.breakpoint.lgAndUp ? 640 : 400"
     class="mx-auto my-2"
     max-width="700"
-    ripple="true"
-    :to="'polls/' + poll.id"
+    ripple
+    :to="this.to"
   >
     <v-card-title class="headline" v-text="idx + ' ' + poll.id"></v-card-title>
 
@@ -34,6 +34,7 @@ export default {
   props: {
     poll: Object,
     idx: Number,
+    to: String,
   },
 };
 </script>

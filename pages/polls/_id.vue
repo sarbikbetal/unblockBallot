@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <h1>{{ this.$route.params.id }}</h1>
-    <PollCardExpanded :poll="pollDetails" />
-  </div>
+  <PollCardExpanded :poll="pollDetails" />
 </template>
 
 <script>
@@ -22,6 +19,7 @@ export default {
         orgName: "CodeIIEST",
         orgImg: "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
       },
+      pollId: this.$route.params.id,
     };
   },
 };
