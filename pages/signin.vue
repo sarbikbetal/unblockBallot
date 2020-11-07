@@ -82,9 +82,16 @@ export default {
               password: this.password
             }
           });
-          console.log(response);
           this.$store.commit("setLoggedIn");
-          this.$router.push("/dashboard");
+          console.log(response);
+          const payload = response.data.token.split(".")[1];
+          const isAdmin = JSON.parse(atob(payload)).admin || 0;
+          if (isAdmin === 1) {
+            this.$store.commit("setAdmin");
+            this.$router.push("/admin");
+          } else {
+            this.$router.push("/dashboard");
+          }
         } catch (e) {
           // this.error = e.response.data.message;
           console.log(e);
