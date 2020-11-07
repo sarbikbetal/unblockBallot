@@ -1,3 +1,10 @@
+export const state = () => ({
+  auth: {
+    loggedIn: false,
+    admin: false
+  }
+});
+
 export const getters = {
   isAuthenticated(state) {
     // return state.auth.loggedIn;
@@ -11,5 +18,5 @@ export const getters = {
   isAdmin(state) {
     // return state.auth.admin;
     return true;
-  },
+  }
 };
