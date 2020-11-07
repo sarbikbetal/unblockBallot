@@ -5,7 +5,7 @@
         :expand-icon="expanded ? 'mdi-close' : 'mdi-arrow-expand-down'"
         @click="toggleExpand"
       >
-        <h1>Create a poll</h1>
+        <h1>{{ title }}</h1>
       </v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-form>
@@ -14,6 +14,7 @@
             <v-row>
               <v-text-field
                 @keydown.enter="focusAddOptions"
+                v-model="question"
                 label="Title/Question"
                 outlined
               ></v-text-field>
@@ -21,7 +22,7 @@
             <!-- Created options -->
             <v-row v-for="(opt, i) in options" :key="i">
               <v-text-field
-                v-model="options[i].text"
+                v-model="options[i]"
                 :label="'Option ' + (i + 1)"
                 append-outer-icon="mdi-close"
                 @click:append-outer="removeOption(i)"
@@ -141,9 +142,13 @@
 
 <script>
 export default {
+  props: {
+    pollDetails: Object,
+    title: String,
+  },
   data() {
     return {
-      title: "",
+      question: "",
       options: [],
       tempOpt: "",
       snackbar: false,
@@ -151,7 +156,7 @@ export default {
       timePicker: false,
       date: new Date().toISOString().substr(0, 10),
       datePicker: false,
-      expanded: false
+      expanded: false,
     };
   },
   methods: {
@@ -163,7 +168,7 @@ export default {
     },
     addOption(e) {
       if (this.tempOpt) {
-        this.options.push({ text: this.tempOpt, idx: this.options.length });
+        this.options.push(this.tempOpt);
         this.clearTemp();
       } else {
         this.snackbar = true;
@@ -174,8 +179,16 @@ export default {
     },
     focusAddOptions() {
       this.$refs.addOptionTextField.focus();
+    },
+  },
+  beforeMount() {
+    if (this.pollDetails) {
+      this.question = this.pollDetails.question;
+      this.options = this.pollDetails.options;
+      this.time = this.pollDetails.time;
+      this.date = this.pollDetails.date;
     }
-  }
+  },
 };
 </script>
 

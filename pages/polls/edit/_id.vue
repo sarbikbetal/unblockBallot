@@ -1,14 +1,29 @@
 <template>
   <div>
-    <h1>Sample route for editing a poll</h1>
     <h3>{{ this.$route.params.id }}</h3>
+    <CreatePoll
+      title="Edit poll"
+      :pollDetails="pollDetails"
+      :allowExpansion="false"
+    />
   </div>
 </template>
 
 <script>
-import PollCardExpanded from "~/components/PollCardExpanded";
+import CreatePoll from "~/components/CreatePoll";
 export default {
   transition: "poll",
+  components: { CreatePoll },
+  data() {
+    return {
+      pollId: this.$route.params.id,
+      pollDetails: {
+        question: "Which character do you want to choose?",
+        options: ["Rick", "Morty", "Summer", "Jerry", "Beth"],
+        id: "1adf34wf90nd140ud412",
+      },
+    };
+  },
 };
 </script>
 
