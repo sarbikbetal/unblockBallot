@@ -12,9 +12,9 @@
             <v-card-text class="text-h2 text-md-center py-5"
               >{{ firstname }} {{ lastname }}</v-card-text
             >
-            <v-card-text class="text-h5 text-md-center pt-5 pb-15">{{
-              email
-            }}</v-card-text>
+            <v-card-text class="text-h5 text-md-center pt-5 pb-15">
+              {{ email }}
+            </v-card-text>
           </v-layout>
         </v-card>
       </v-flex>
@@ -29,12 +29,19 @@ export default {
       return redirect("/dashboard");
     }
   },
-  data() {
-    return {
-      firstname: "Generic",
-      lastname: "Name",
-      email: "nah@test.com"
-    };
+  props: {
+    firstname: {
+      type: String,
+      default: "Generic"
+    },
+    lastname: {
+      type: String,
+      default: "Name"
+    },
+    email: {
+      type: String,
+      default: "nah@test.com"
+    }
   }
 };
 </script>

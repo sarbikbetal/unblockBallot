@@ -122,7 +122,7 @@ export default {
             headers: headers
           })
           .then(response => {
-            console.log(response);
+            // console.log(response);
             if (response === "OK") {
               this.$router.push("signin");
             } else {

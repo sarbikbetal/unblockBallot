@@ -75,10 +75,6 @@ export default {
   methods: {
     async submit() {
       if (this.$refs.form.validate()) {
-        // this.$refs.form.$el.submit();
-        // request to API here
-        // & redirect to dashboard
-        // this.$router.push("/dashboard");
         try {
           let response = await this.$auth.loginWith("local", {
             data: {

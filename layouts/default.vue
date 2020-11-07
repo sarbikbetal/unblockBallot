@@ -122,7 +122,7 @@ export default {
   },
   methods: {
     toggleTheme() {
-      console.log(this.$store);
+      // console.log(this.$store);
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     }
   }

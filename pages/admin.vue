@@ -20,7 +20,6 @@ import PollCard from "~/components/PollCard";
 import ProfileCard from "~/components/ProfileCard";
 export default {
   middleware({ store, redirect }) {
-    // If the user is not authenticated
     if (!store.getters["isLoggedIn"] || !store.getters["isAdmin"]) {
       return redirect("/signin");
     }
