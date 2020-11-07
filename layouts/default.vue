@@ -34,6 +34,9 @@
       <v-btn icon @click.stop="toggleTheme()">
         <v-icon>mdi-theme-light-dark</v-icon>
       </v-btn>
+      <v-btn icon to="/profile">
+        <v-icon>mdi-account-box-outline</v-icon>
+      </v-btn>
       <!-- <v-btn icon @click.stop="clipped = !clipped">
         <v-icon>mdi-application</v-icon>
       </v-btn>
