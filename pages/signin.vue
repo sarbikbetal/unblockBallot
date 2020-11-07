@@ -34,7 +34,7 @@
                     @click="submit"
                     :class="{
                       'blue darken-4 white--text': valid,
-                      disabled: !valid,
+                      disabled: !valid
                     }"
                     >Login</v-btn
                   >
@@ -53,23 +53,23 @@
 export default {
   middleware({ store, redirect }) {
     // If the user is authenticated
-    if (store.getters.isAuthenticated) {
-      return redirect("/dashboard");
-    }
+    // if (store.getters.isAuthenticated) {
+    //   return redirect("/dashboard");
+    // }
   },
   data() {
     return {
       valid: false,
       visible: false,
       password: "",
-      passwordRules: [(v) => !!v || "Password is required"],
+      passwordRules: [v => !!v || "Password is required"],
       email: "",
       emailRules: [
-        (v) => !!v || "E-mail is required",
-        (v) =>
+        v => !!v || "E-mail is required",
+        v =>
           /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-          "E-mail must be valid",
-      ],
+          "E-mail must be valid"
+      ]
     };
   },
   methods: {
@@ -80,20 +80,21 @@ export default {
         // & redirect to dashboard
         // this.$router.push("/dashboard");
         try {
-          await this.$auth.loginWith("local", {
+          let response = await this.$auth.loginWith("local", {
             data: {
               email: this.email,
-              password: this.password,
-            },
+              password: this.password
+            }
           });
+          console.log(response);
           this.$router.push("/dashboard");
         } catch (e) {
           // this.error = e.response.data.message;
           console.log(e);
         }
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

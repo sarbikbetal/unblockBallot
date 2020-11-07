@@ -1,22 +1,5 @@
 <template>
-  <b-card title="Line">
-    <b-form-group>
-      <b-form-radio
-        v-for="(item, index) in btn"
-        :key="index"
-        v-model="radio"
-        :name="item.label"
-        :value="item.value"
-        @change="updateChart"
-      >
-        {{ item.label }}
-      </b-form-radio>
-    </b-form-group>
-
-    <b-card img-bottom>
-      <ChartLineBase :chart-data="chartData" />
-    </b-card>
-  </b-card>
+  <ChartLineBase :chart-data="chartData" />
 </template>
 
 <script>

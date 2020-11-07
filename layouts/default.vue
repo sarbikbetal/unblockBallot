@@ -68,60 +68,61 @@ export default {
           title: "Welcome",
           to: "/",
           public: true,
-          adminOnly: false,
+          adminOnly: false
         },
         {
           icon: "mdi-spa",
           title: "Dashboard",
           to: "/dashboard",
           public: false,
-          adminOnly: false,
+          adminOnly: false
         },
         {
           icon: "mdi-key-outline",
           title: "Admin",
           to: "/admin",
           public: false,
-          adminOnly: true,
+          adminOnly: true
         },
         {
           icon: "mdi-account",
           title: "Sign Up",
           to: "/signup",
           public: true,
-          adminOnly: false,
+          adminOnly: false
         },
         {
           icon: "mdi-account-circle",
           title: "Sign In",
           to: "/signin",
           public: true,
-          adminOnly: false,
-        },
+          adminOnly: false
+        }
       ],
       miniVariant: false,
       right: true,
-      title: "unBlocked Dashboard",
+      title: "unBlocked Dashboard"
     };
   },
   computed: {
-    isAdmin: function () {
+    isAdmin: function() {
       return this.$store.getters.isAdmin;
     },
-    isLoggedIn: function () {
+    isLoggedIn: function() {
       return this.$store.getters.isAuthenticated;
     },
-    filteredItems: function () {
+    filteredItems: function() {
       return this.items.filter(
-        (item) =>
+        item =>
           this.isAdmin || (this.isLoggedIn && !item.adminOnly) || item.public
       );
-    },
+    }
   },
   methods: {
     toggleTheme() {
+      console.log(this.$store.getters);
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-    },
-  },
+    }
+  }
 };
 </script>

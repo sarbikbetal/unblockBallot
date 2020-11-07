@@ -1,9 +1,5 @@
 <template>
-  <b-card title="Doughnut">
-    <b-card img-bottom>
-      <ChartDoughnutBase :chart-data="chartData" />
-    </b-card>
-  </b-card>
+  <ChartDoughnutBase :chart-data="chartData" />
 </template>
 
 <script>
