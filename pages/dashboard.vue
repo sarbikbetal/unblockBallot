@@ -15,12 +15,12 @@
 import PollCard from "~/components/PollCard";
 import ProfileCard from "~/components/ProfileCard";
 export default {
-  middleware({ store, redirect }) {
-    // If the user is not authenticated
-    if (!store.getters.isAuthenticated) {
-      return redirect("/signin");
-    }
-  },
+  // middleware({ store, redirect }) {
+  //   // If the user is not authenticated
+  //   if (!store.getters.isAuthenticated) {
+  //     return redirect("/signin");
+  //   }
+  // },
   components: { PollCard, ProfileCard },
   data() {
     return {
