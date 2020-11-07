@@ -74,9 +74,9 @@
 export default {
   middleware({ store, redirect }) {
     // If the user is authenticated
-    if (store.getters.isAuthenticated) {
-      return redirect("/dashboard");
-    }
+    // if (store.getters.isAuthenticated) {
+    //   return redirect("/dashboard");
+    // }
   },
   data() {
     return {

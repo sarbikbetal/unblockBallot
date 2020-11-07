@@ -1,9 +1,5 @@
 <template>
-  <b-card title="Bar">
-    <b-card img-bottom>
-      <ChartBarBase :chart-data="chartData" />
-    </b-card>
-  </b-card>
+  <ChartBarBase :chart-data="chartData" />
 </template>
 
 <script>
