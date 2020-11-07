@@ -1,9 +1,8 @@
 <template>
   <v-card
     hover
-    :width="$vuetify.breakpoint.lgAndUp ? 640 : 400"
-    class="mx-auto my-2"
-    max-width="700"
+    width="100%"
+    class="mx-8 my-2"
     ripple
     :to="this.to"
   >
@@ -37,6 +36,7 @@ export default {
     to: String,
   },
 };
+//    :width="$vuetify.breakpoint.mdAndUp ? '86%' : '90%'"
 </script>
 
 <style>
