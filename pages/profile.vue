@@ -12,9 +12,9 @@
             <v-card-text class="text-h2 text-md-center py-5"
               >{{ firstname }} {{ lastname }}</v-card-text
             >
-            <v-card-text class="text-h5 text-md-center pt-5 pb-15">{{
-              email
-            }}</v-card-text>
+            <v-card-text class="text-h5 text-md-center pt-5 pb-15">
+              {{ email }}
+            </v-card-text>
           </v-layout>
         </v-card>
       </v-flex>
@@ -24,12 +24,24 @@
 
 <script>
 export default {
-  data() {
-    return {
-      firstname: "Generic",
-      lastname: "Name",
-      email: "nah@test.com"
-    };
+  middleware({ store, redirect }) {
+    if (!store.getters["isLoggedIn"]) {
+      return redirect("/dashboard");
+    }
+  },
+  props: {
+    firstname: {
+      type: String,
+      default: "Generic"
+    },
+    lastname: {
+      type: String,
+      default: "Name"
+    },
+    email: {
+      type: String,
+      default: "nah@test.com"
+    }
   }
 };
 </script>

@@ -8,7 +8,7 @@
     >
       <v-flex xs12 sm8 elevation-6>
         <v-card>
-          <v-card-title> Login to your account </v-card-title>
+          <v-card-title> Sign In to your account </v-card-title>
           <v-card-text>
             <div>
               <v-form v-model="valid" ref="form">
@@ -53,9 +53,9 @@
 export default {
   middleware({ store, redirect }) {
     // If the user is authenticated
-    // if (store.getters.isAuthenticated) {
-    //   return redirect("/dashboard");
-    // }
+    if (store.getters["authentication/isLoggedIn"]) {
+      return redirect("/dashboard");
+    }
   },
   data() {
     return {
@@ -75,10 +75,6 @@ export default {
   methods: {
     async submit() {
       if (this.$refs.form.validate()) {
-        // this.$refs.form.$el.submit();
-        // request to API here
-        // & redirect to dashboard
-        // this.$router.push("/dashboard");
         try {
           let response = await this.$auth.loginWith("local", {
             data: {
@@ -87,6 +83,7 @@ export default {
             }
           });
           console.log(response);
+          this.$store.commit("setLoggedIn");
           this.$router.push("/dashboard");
         } catch (e) {
           // this.error = e.response.data.message;

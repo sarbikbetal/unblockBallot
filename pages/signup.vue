@@ -55,7 +55,7 @@
                     @click="submit"
                     :class="{
                       'blue darken-4 white--text': valid,
-                      disabled: !valid,
+                      disabled: !valid
                     }"
                     >Sign Up</v-btn
                   >
@@ -74,9 +74,9 @@
 export default {
   middleware({ store, redirect }) {
     // If the user is authenticated
-    // if (store.getters.isAuthenticated) {
-    //   return redirect("/dashboard");
-    // }
+    if (store.getters["authentication/isLoggedIn"]) {
+      return redirect("/dashboard");
+    }
   },
   data() {
     return {
@@ -85,20 +85,20 @@ export default {
       password: "",
       firstname: "",
       lastname: "",
-      passwordRules: [(v) => !!v || "Password is required"],
+      passwordRules: [v => !!v || "Password is required"],
       nameRules: [
-        (v) => !!v || "Name is required",
-        (v) => v.length <= 15 || "Name must be less than 10 characters",
+        v => !!v || "Name is required",
+        v => v.length <= 15 || "Name must be less than 10 characters"
       ],
       email: "",
       emailRules: [
-        (v) => !!v || "E-mail is required",
-        (v) =>
+        v => !!v || "E-mail is required",
+        v =>
           /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-          "E-mail must be valid",
+          "E-mail must be valid"
       ],
       signuperror:
-        "Some error occurred while signing up. Please refresh the page!",
+        "Some error occurred while signing up. Please refresh the page!"
     };
   },
   methods: {
@@ -110,31 +110,31 @@ export default {
           email: this.email,
           firstname: this.firstname,
           lastname: this.lastname,
-          password: this.password,
+          password: this.password
         });
         const headers = {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         };
         let resp;
         const url = "http://localhost:3001/user/register";
         this.$axios
           .$post(url, data, {
-            headers: headers,
+            headers: headers
           })
-          .then((response) => {
-            console.log(response);
+          .then(response => {
+            // console.log(response);
             if (response === "OK") {
               this.$router.push("signin");
             } else {
               // handle error
             }
           })
-          .catch(function (error) {
+          .catch(function(error) {
             console.log(error);
           });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
