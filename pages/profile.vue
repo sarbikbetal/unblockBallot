@@ -24,6 +24,11 @@
 
 <script>
 export default {
+  middleware({ store, redirect }) {
+    if (!store.getters["isLoggedIn"]) {
+      return redirect("/dashboard");
+    }
+  },
   data() {
     return {
       firstname: "Generic",

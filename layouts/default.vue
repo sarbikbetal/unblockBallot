@@ -8,18 +8,29 @@
       app
     >
       <v-list>
-        <v-list-item router exact to="/">
-          <v-list-item-action>
-            <v-icon>
-              mdi-apps
-            </v-icon>
-          </v-list-item-action>
+        <v-list-item>
           <v-list-item-content>
-            <v-list-item-title v-text="'Home'" />
+            <v-list-item-title class="title">
+              UnblockBallot
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              Secure Voting
+            </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <!--  -->
-        <v-list-item router exact to="/dashboard">
+        <v-list-item router exact to="/profile" v-if="isLoggedIn">
+          <v-list-item-action>
+            <v-icon>
+              mdi-account-box-outline
+            </v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title v-text="'Profile'" />
+          </v-list-item-content>
+        </v-list-item>
+        <!--  -->
+        <v-list-item router exact to="/dashboard" v-if="isLoggedIn">
           <v-list-item-action>
             <v-icon>
               mdi-spa
@@ -52,7 +63,7 @@
           </v-list-item-content>
         </v-list-item>
         <!--  -->
-        <v-list-item router exact to="/admin" v-if="isAdmin">
+        <v-list-item router exact to="/admin" v-if="isLoggedIn && isAdmin">
           <v-list-item-action>
             <v-icon>
               mdi-key-outline
@@ -72,10 +83,9 @@
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <v-btn icon @click.stop="toggleTheme()">
-        <v-icon>mdi-theme-light-dark</v-icon>
-      </v-btn>
-      <v-btn icon to="/profile">
-        <v-icon>mdi-account-box-outline</v-icon>
+        <v-icon>{{
+          this.$vuetify.theme.dark ? "mdi-weather-sunny" : "mdi-weather-night"
+        }}</v-icon>
       </v-btn>
     </v-app-bar>
     <v-main>
@@ -85,6 +95,7 @@
     </v-main>
     <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&nbsp; by d4rks0c1ety</span>
     </v-footer>
   </v-app>
 </template>
@@ -97,7 +108,7 @@ export default {
     return {
       clipped: false,
       drawer: false,
-      fixed: false,
+      fixed: true,
       miniVariant: false,
       right: true,
       title: "Dashboard"
@@ -105,8 +116,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      isLoggedIn: "authentication/isLoggedIn",
-      isAdmin: "authentication/isAdmin"
+      isLoggedIn: "isLoggedIn",
+      isAdmin: "isAdmin"
     })
   },
   methods: {

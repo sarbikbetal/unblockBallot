@@ -8,7 +8,7 @@
     >
       <v-flex xs12 sm8 elevation-6>
         <v-card>
-          <v-card-title> Login to your account </v-card-title>
+          <v-card-title> Sign In to your account </v-card-title>
           <v-card-text>
             <div>
               <v-form v-model="valid" ref="form">
@@ -87,6 +87,7 @@ export default {
             }
           });
           console.log(response);
+          this.$store.commit("setLoggedIn");
           this.$router.push("/dashboard");
         } catch (e) {
           // this.error = e.response.data.message;

@@ -21,7 +21,7 @@ import ProfileCard from "~/components/ProfileCard";
 export default {
   middleware({ store, redirect }) {
     // If the user is not authenticated
-    if (!store.getters.isAdmin) {
+    if (!store.getters["isLoggedIn"] || !store.getters["isAdmin"]) {
       return redirect("/signin");
     }
   },
@@ -35,7 +35,7 @@ export default {
           id: "1adf34wf90nd140ud412",
           due: new Date(2020, 11, 10),
           orgName: "CodeIIEST",
-          orgImg: "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
+          orgImg: "https://cdn.vuetifyjs.com/images/cards/foster.jpg"
         },
         {
           question: "Which character do you want to choose?",
@@ -43,7 +43,7 @@ export default {
           id: "1adf34qf9wnde40ud417",
           due: new Date(2020, 11, 10),
           orgName: "CodeIIEST",
-          orgImg: "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
+          orgImg: "https://cdn.vuetifyjs.com/images/cards/foster.jpg"
         },
         {
           question: "Which character do you want to choose?",
@@ -51,7 +51,7 @@ export default {
           id: "1adf31wf90nd240udfs5",
           due: new Date(2020, 11, 10),
           orgName: "CodeIIEST",
-          orgImg: "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
+          orgImg: "https://cdn.vuetifyjs.com/images/cards/foster.jpg"
         },
         {
           question: "Which character do you want to choose?",
@@ -59,13 +59,12 @@ export default {
           id: "3df34wfnjeiodt0ud412",
           due: new Date(2020, 11, 10),
           orgName: "CodeIIEST",
-          orgImg: "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
-        },
-      ],
+          orgImg: "https://cdn.vuetifyjs.com/images/cards/foster.jpg"
+        }
+      ]
     };
-  },
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>
