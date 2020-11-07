@@ -1,9 +1,12 @@
 <template>
   <v-expansion-panels popout>
     <v-expansion-panel>
-      <v-expansion-panel-header expand-icon="mdi-close"
-        ><h1>Create a poll</h1></v-expansion-panel-header
+      <v-expansion-panel-header
+        :expand-icon="expanded ? 'mdi-close' : 'mdi-arrow-expand-down'"
+        @click="toggleExpand"
       >
+        <h1>Create a poll</h1>
+      </v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-form>
           <v-container>
@@ -148,9 +151,13 @@ export default {
       timePicker: false,
       date: new Date().toISOString().substr(0, 10),
       datePicker: false,
+      expanded: false
     };
   },
   methods: {
+    toggleExpand() {
+      this.expanded = !this.expanded;
+    },
     clearTemp() {
       this.tempOpt = "";
     },
@@ -167,10 +174,9 @@ export default {
     },
     focusAddOptions() {
       this.$refs.addOptionTextField.focus();
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>
