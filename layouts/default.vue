@@ -125,6 +125,14 @@ export default {
       // console.log(this.$store);
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     }
-  }
+  },
+  beforeCreate() {
+    const stateString = window.localStorage.getItem("authState");
+    const oldState = JSON.parse(stateString);
+
+    if (oldState) {
+      this.$store.commit("restoreAuthState", oldState);
+    }
+  },
 };
 </script>
