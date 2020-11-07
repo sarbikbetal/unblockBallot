@@ -1,19 +1,17 @@
 <template>
-  <div>
+  <v-col>
     <h3>{{ this.$route.params.id }}</h3>
-    <CreatePoll
-      title="Edit poll"
-      :pollDetails="pollDetails"
-      :allowExpansion="false"
-    />
-  </div>
+    <v-col cols="12" sm="9" md="7" xl="5" class="mx-auto">
+      <EditPoll title="Edit poll" :pollDetails="pollDetails" />
+    </v-col>
+  </v-col>
 </template>
 
 <script>
-import CreatePoll from "~/components/CreatePoll";
+import EditPoll from "~/components/EditPoll";
 export default {
   transition: "poll",
-  components: { CreatePoll },
+  components: { EditPoll },
   data() {
     return {
       pollId: this.$route.params.id,
