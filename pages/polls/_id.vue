@@ -6,8 +6,13 @@
 import PollCardExpanded from "~/components/PollCardExpanded";
 export default {
   transition: "poll",
+  middleware({ store, redirect }) {
+    if (!store.getters["isLoggedIn"]) {
+      return redirect("/signin");
+    }
+  },
   components: {
-    PollCardExpanded,
+    PollCardExpanded
   },
   data() {
     return {
@@ -17,11 +22,11 @@ export default {
         id: "1adf34wf90nd140ud412",
         due: new Date(2020, 11, 10),
         orgName: "CodeIIEST",
-        orgImg: "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
+        orgImg: "https://cdn.vuetifyjs.com/images/cards/foster.jpg"
       },
-      pollId: this.$route.params.id,
+      pollId: this.$route.params.id
     };
-  },
+  }
 };
 </script>
 

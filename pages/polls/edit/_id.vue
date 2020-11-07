@@ -10,6 +10,11 @@
 <script>
 import EditPoll from "~/components/EditPoll";
 export default {
+  middleware({ store, redirect }) {
+    if (!store.getters["isLoggedIn"] || !store.getters["isAdmin"]) {
+      return redirect("/signin");
+    }
+  },
   transition: "poll",
   components: { EditPoll },
   data() {
@@ -18,10 +23,10 @@ export default {
       pollDetails: {
         question: "Which character do you want to choose?",
         options: ["Rick", "Morty", "Summer", "Jerry", "Beth"],
-        id: "1adf34wf90nd140ud412",
-      },
+        id: "1adf34wf90nd140ud412"
+      }
     };
-  },
+  }
 };
 </script>
 
